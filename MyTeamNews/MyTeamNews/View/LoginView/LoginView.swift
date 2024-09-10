@@ -32,6 +32,18 @@ final class LoginView: UIView {
         return label
     }()
     
+    // - MARK: Login Button Properties
+    
+    private let LoginButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = CGFloat(LoginViewSetEnum.LoginButtonSpacing)
+        return stackView
+    }()
+    
     // - MARK: Login View Setting
     
     override init(frame: CGRect) {
