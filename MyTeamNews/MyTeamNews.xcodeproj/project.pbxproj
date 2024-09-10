@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		1478DE3D2C883930000AAAE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE3C2C883930000AAAE2 /* AppDelegate.swift */; };
 		1478DE3F2C883930000AAAE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE3E2C883930000AAAE2 /* SceneDelegate.swift */; };
-		1478DE412C883930000AAAE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE402C883930000AAAE2 /* ViewController.swift */; };
+		1478DE412C883930000AAAE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE402C883930000AAAE2 /* LoginViewController.swift */; };
 		1478DE462C883931000AAAE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1478DE452C883931000AAAE2 /* Assets.xcassets */; };
 		1478DE492C883931000AAAE2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1478DE482C883931000AAAE2 /* Base */; };
+		1478DE782C902472000AAAE2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE772C902472000AAAE2 /* LoginView.swift */; };
+		1478DE7C2C902BD4000AAAE2 /* LoginViewSetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478DE7B2C902BD4000AAAE2 /* LoginViewSetEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1478DE392C883930000AAAE2 /* MyTeamNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTeamNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1478DE3C2C883930000AAAE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1478DE3E2C883930000AAAE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1478DE402C883930000AAAE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1478DE402C883930000AAAE2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1478DE452C883931000AAAE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1478DE482C883931000AAAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1478DE4A2C883931000AAAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1478DE772C902472000AAAE2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1478DE7B2C902BD4000AAAE2 /* LoginViewSetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSetEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,72 @@
 		1478DE3B2C883930000AAAE2 /* MyTeamNews */ = {
 			isa = PBXGroup;
 			children = (
+				1478DE7A2C902B93000AAAE2 /* Enum */,
+				1478DE732C901EFE000AAAE2 /* Model */,
+				1478DE722C901EF4000AAAE2 /* View */,
+				1478DE742C901F03000AAAE2 /* ViewModel */,
 				1478DE3C2C883930000AAAE2 /* AppDelegate.swift */,
 				1478DE3E2C883930000AAAE2 /* SceneDelegate.swift */,
-				1478DE402C883930000AAAE2 /* ViewController.swift */,
 				1478DE452C883931000AAAE2 /* Assets.xcassets */,
 				1478DE472C883931000AAAE2 /* LaunchScreen.storyboard */,
 				1478DE4A2C883931000AAAE2 /* Info.plist */,
 			);
 			path = MyTeamNews;
+			sourceTree = "<group>";
+		};
+		1478DE722C901EF4000AAAE2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1478DE762C902458000AAAE2 /* LoginView */,
+				1478DE752C9023AA000AAAE2 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1478DE732C901EFE000AAAE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1478DE742C901F03000AAAE2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1478DE752C9023AA000AAAE2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1478DE792C902AA3000AAAE2 /* LoginViewController */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1478DE762C902458000AAAE2 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				1478DE772C902472000AAAE2 /* LoginView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		1478DE792C902AA3000AAAE2 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1478DE402C883930000AAAE2 /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		1478DE7A2C902B93000AAAE2 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				1478DE7B2C902BD4000AAAE2 /* LoginViewSetEnum.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +196,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1478DE412C883930000AAAE2 /* ViewController.swift in Sources */,
+				1478DE412C883930000AAAE2 /* LoginViewController.swift in Sources */,
 				1478DE3D2C883930000AAAE2 /* AppDelegate.swift in Sources */,
+				1478DE782C902472000AAAE2 /* LoginView.swift in Sources */,
+				1478DE7C2C902BD4000AAAE2 /* LoginViewSetEnum.swift in Sources */,
 				1478DE3F2C883930000AAAE2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
