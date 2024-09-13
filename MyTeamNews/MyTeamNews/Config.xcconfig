@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  MyTeamNews
+//
+//  Created by Baek on 9/10/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+KAKAO_NATIVE_APP_KEY = 449d266bb9e2a0ad4d05dfe94f1ed875
