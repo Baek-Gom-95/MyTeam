@@ -8,7 +8,8 @@
 import Foundation
 
 enum LoginViewSetEnum {
-    static let LoginViewStackViewSpacing = 10
-    static let LoginButtonSpacing = 10
-    static let LoginLogoText = "MyTeam"
+    static let loginViewStackViewSpacing = 10
+    static let loginButtonSpacing = 10
+    static let loginLogoText = "MyTeam"
+    static let joinMembershipText = "회원가입"
 }
