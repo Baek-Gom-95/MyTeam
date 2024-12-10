@@ -40,6 +40,7 @@
 		14C663DD2D06B4A3001D9D8E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 14C663DC2D06B4A3001D9D8E /* RxCocoa */; };
 		14C663DF2D06B4A3001D9D8E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 14C663DE2D06B4A3001D9D8E /* RxRelay */; };
 		14C663E12D06B4A3001D9D8E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14C663E02D06B4A3001D9D8E /* RxSwift */; };
+		14C663E32D06E245001D9D8E /* AuthenticationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C663E22D06E245001D9D8E /* AuthenticationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,7 @@
 		1478DE972CAFBBBB000AAAE2 /* MyTeamNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyTeamNews.entitlements; sourceTree = "<group>"; };
 		1478DE9C2CCA464E000AAAE2 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1478DEA32CCB606D000AAAE2 /* LoginViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelDelegate.swift; sourceTree = "<group>"; };
+		14C663E22D06E245001D9D8E /* AuthenticationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				1478DEA32CCB606D000AAAE2 /* LoginViewModelDelegate.swift */,
+				14C663E22D06E245001D9D8E /* AuthenticationDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				1478DEA42CCB606D000AAAE2 /* LoginViewModelDelegate.swift in Sources */,
 				1478DE7C2C902BD4000AAAE2 /* LoginViewSetEnum.swift in Sources */,
 				1406D5682D02E4FB006FFC01 /* UserService.swift in Sources */,
+				14C663E32D06E245001D9D8E /* AuthenticationDelegate.swift in Sources */,
 				1406D5612D02DED6006FFC01 /* AuthCredentialsModel.swift in Sources */,
 				1478DE3F2C883930000AAAE2 /* SceneDelegate.swift in Sources */,
 			);
