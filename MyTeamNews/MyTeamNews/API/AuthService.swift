@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 struct AuthService {
-    static func signinUser(withCredential credential: OAuthCredential) async throws -> FirebaseAuth.User {
+    static func signinUser(withCredential credential: AuthCredential) async throws -> FirebaseAuth.User {
         do {
             let result = try await Auth.auth().signIn(with: credential)
             return result.user

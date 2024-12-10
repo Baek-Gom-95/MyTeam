@@ -8,6 +8,9 @@
 import UIKit
 import AuthenticationServices
 import RxSwift
+import GoogleSignIn
+import FirebaseAuth
+import Firebase
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
@@ -22,6 +25,7 @@ class LoginViewController: UIViewController {
         setupUI()
         setupConstraint()
         kakaoLoginButton()
+        googleLoginButton()
         appleLoginButton()
         bind()
     }
@@ -29,7 +33,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     
-    // SetUp UI
+    // MARK: - SetUp UI
     private func setupUI() {
         self.view.addSubview(loginView)
     }
@@ -45,20 +49,20 @@ extension LoginViewController {
         ])
     }
     
-    // SetUp Button
+    // MARK: - SetUp Button
     private func kakaoLoginButton() {
         loginView.kakaoLoginButton.addTarget(self, action: #selector(loginKaKao), for: .touchUpInside)
     }
     
     private func googleLoginButton() {
-        
+        loginView.googleLoginButton.addTarget(self, action: #selector(loginGoogle), for: .touchUpInside)
     }
     
     private func appleLoginButton() {
         loginView.appleLoginButton.addTarget(self, action: #selector(loginApple), for: .touchUpInside)
     }
     
-    // objc
+    // MARK: - objc
     @objc private func loginKaKao() {
         loginViewModel.kakaoSignin()
     }
@@ -73,10 +77,27 @@ extension LoginViewController {
         authrizationController.delegate = self
         authrizationController.presentationContextProvider = self
         authrizationController.performRequests()
-        
     }
     
-    // func
+    @objc private func loginGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            if let error = error {
+                print("DEBUG: Google Sign In Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else { return }
+            
+            self?.loginViewModel.googleSignin(withTokenId: idToken)
+        }
+    }
+    
+    // MARK: - Func
     
     func bind() {
         loginViewModel.output
@@ -91,6 +112,7 @@ extension LoginViewController {
                     Task {
                         do {
                             try await AuthManager.shared.updateUser()
+                            print("이미 회원입니다.")
                             self?.dismiss(animated: true, completion: nil)
                         } catch {
                             print("DEBUG: 로그인 할 수 없습니다.")

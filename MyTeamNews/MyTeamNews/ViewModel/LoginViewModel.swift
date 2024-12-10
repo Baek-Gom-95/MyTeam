@@ -108,7 +108,7 @@ class LoginViewModel {
         }
     }
     
-    // MARK: AppleSignIn
+    // MARK: - AppleSignIn
     
     func appleSignin(withTokenId tokenId: String) {
         Task {
@@ -166,6 +166,27 @@ class LoginViewModel {
         }
         
         return result
+    }
+    
+    // MARK: - GoogleSignIn
+    
+    func googleSignin(withTokenId tokenId: String) {
+        Task {
+            do {
+                // GoogleAuthProvider.credential이 반환하는 타입을 AuthCredential로 명시적 선언
+                let credential: AuthCredential = GoogleAuthProvider.credential(
+                    withIDToken: tokenId,
+                    accessToken: GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString ?? ""
+                )
+                
+                // AuthService의 메서드도 AuthCredential을 받도록 수정
+                let user = try await AuthService.signinUser(withCredential: credential)
+                self.user = user
+                await didUserAlreadyRegisterInFirestore()
+            } catch {
+                output.onNext(.didFailToSignIn(error: error))
+            }
+        }
     }
     
     // MARK: - DidUserAlreadyRegisterInFirestore
