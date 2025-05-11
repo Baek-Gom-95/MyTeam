@@ -170,22 +170,46 @@ class LoginViewModel {
     
     // MARK: - GoogleSignIn
     
-    func googleSignin(withTokenId tokenId: String) {
-        Task {
-            do {
-                // GoogleAuthProvider.credential이 반환하는 타입을 AuthCredential로 명시적 선언
-                let credential: AuthCredential = GoogleAuthProvider.credential(
-                    withIDToken: tokenId,
-                    accessToken: GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString ?? ""
-                )
-                
-                // AuthService의 메서드도 AuthCredential을 받도록 수정
-                let user = try await AuthService.signinUser(withCredential: credential)
-                self.user = user
-                await didUserAlreadyRegisterInFirestore()
-            } catch {
-                output.onNext(.didFailToSignIn(error: error))
+    func googleSignin(presentingViewController: UIViewController) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            output.onNext(.didFailToSignIn(error: NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Client ID not found"])))
+            return
+        }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] result, error in
+            if let error = error {
+                self?.output.onNext(.didFailToSignIn(error: error))
+                return
             }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                self?.output.onNext(.didFailToSignIn(error: NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data"])))
+                return
+            }
+            
+            Task {
+                await self?.handleGoogleSignIn(withTokenId: idToken)
+            }
+        }
+    }
+    
+    private func handleGoogleSignIn(withTokenId tokenId: String) async {
+        // 기존 googleSignin 메서드의 내용
+        do {
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: tokenId,
+                accessToken: GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString ?? ""
+            )
+            
+            let user = try await AuthService.signinUser(withCredential: credential)
+            self.user = user
+            await didUserAlreadyRegisterInFirestore()
+        } catch {
+            output.onNext(.didFailToSignIn(error: error))
         }
     }
     
