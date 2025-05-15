@@ -8,7 +8,6 @@
 import UIKit
 import AuthenticationServices
 import RxSwift
-import GoogleSignIn
 import FirebaseAuth
 import Firebase
 
@@ -80,21 +79,7 @@ extension LoginViewController {
     }
     
     @objc private func loginGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-        
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
-            if let error = error {
-                print("DEBUG: Google Sign In Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else { return }
-            
-            self?.loginViewModel.googleSignin(withTokenId: idToken)
-        }
+        loginViewModel.googleSignin(presentingViewController: self)
     }
     
     // MARK: - Func
